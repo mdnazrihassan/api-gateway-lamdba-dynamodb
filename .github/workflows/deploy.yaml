@@ -47,7 +47,7 @@ jobs:
         id: init
         run: |
           terraform fmt
-          terraform init -upgrade
+          terraform init -upgrade -backend-config="region=${{ secrets.AWS_REGION }}"
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
