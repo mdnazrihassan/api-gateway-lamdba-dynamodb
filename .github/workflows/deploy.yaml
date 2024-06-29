@@ -14,7 +14,8 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_REGION: ${{ secrets.AWS_REGION }}
+      #AWS_REGION: ${{ secrets.AWS_REGION }}
+      AWS_REGION: "eu-north-1"
       AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
       jwtSecret: ${{ secrets.JWT_SECRET }} #github secre
 
@@ -37,7 +38,8 @@ jobs:
         uses: jakejarvis/s3-sync-action@v0.3.1
         env:
           SOURCE_DIR: "./zip"
-          AWS_REGION: ${{ secrets.AWS_REGION }}
+          #AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_REGION: "eu-north-1"
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
 
       - name: Setup Terraform
@@ -53,5 +55,6 @@ jobs:
         run: terraform apply -auto-approve
         env:
           TF_VAR_aws_s3_bucket: ${{ secrets.AWS_S3_BUCKET }}
-          TF_VAR_aws_region: ${{ secrets.AWS_REGION }}
+          #TF_VAR_aws_region: ${{ secrets.AWS_REGION }}
+          TF_VAR_aws_region: "eu-north-1"
           TF_VAR_jwtSecret: ${{ secrets.JWT_SECRET }}
