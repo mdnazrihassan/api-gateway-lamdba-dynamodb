@@ -49,7 +49,7 @@ jobs:
         id: init
         run: |
           terraform fmt
-          terraform init -upgrade
+          terraform init
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
