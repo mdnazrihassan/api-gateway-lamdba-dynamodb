@@ -41,13 +41,13 @@ jobs:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
+        uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
         id: init
         run: |
           terraform fmt
-          terraform init -upgrade -backend-config="region=${{ secrets.AWS_REGION }}"
+          terraform init -upgrade
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
